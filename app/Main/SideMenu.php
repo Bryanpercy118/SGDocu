@@ -29,6 +29,7 @@ class SideMenu
                 ],
                 'title' => 'Carga de Documentos'
             ],
+            
             'file-manager' => [
                 'icon' => 'hard-drive',
                 'route_name' => 'file-manager',
