@@ -15,49 +15,29 @@ class SideMenu
         return [
             'dashboard' => [
                 'icon' => 'home',
-                'title' => 'Dashboard',
-                'sub_menu' => [
-                    'dashboard-overview-1' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 1'
-                    ]
-                    
-                ]
+                'title' => 'Panel Principal',
+                'route_name' => 'dashboard-overview-1',
+                'params' => [
+                    'layout' => 'side-menu',
+                ],
             ],
-            'menu-layout' => [
-                'icon' => 'box',
-                'title' => 'Menu Layout',
-                'sub_menu' => [
-                    'side-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Side Menu'
-                    ],
-                    'simple-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'simple-menu'
-                        ],
-                        'title' => 'Simple Menu'
-                    ],
-                    'top-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'top-menu'
-                        ],
-                        'title' => 'Top Menu'
-                    ]
-                ]
+            'inbox' => [
+                'icon' => 'inbox',
+                'route_name' => 'inbox',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Carga de Documentos'
             ],
+            'file-manager' => [
+                'icon' => 'hard-drive',
+                'route_name' => 'file-manager',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Administrador de Documentos'
+            ],
+            
             'e-commerce' => [
                 'icon' => 'shopping-bag',
                 'title' => 'E-Commerce',
@@ -154,22 +134,8 @@ class SideMenu
                     ],
                 ]
             ],
-            'inbox' => [
-                'icon' => 'inbox',
-                'route_name' => 'inbox',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Inbox'
-            ],
-            'file-manager' => [
-                'icon' => 'hard-drive',
-                'route_name' => 'file-manager',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'File Manager'
-            ],
+           
+           
             'point-of-sale' => [
                 'icon' => 'credit-card',
                 'route_name' => 'point-of-sale',
