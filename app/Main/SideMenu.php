@@ -29,7 +29,6 @@ class SideMenu
                 ],
                 'title' => 'Carga de Documentos'
             ],
-            
             'file-manager' => [
                 'icon' => 'hard-drive',
                 'route_name' => 'file-manager',
@@ -40,158 +39,85 @@ class SideMenu
             ],
             
             'e-commerce' => [
-                'icon' => 'shopping-bag',
-                'title' => 'E-Commerce',
+                'icon' => 'settings',
+                'title' => 'Configuracion',
                 'sub_menu' => [
                     'categories' => [
-                        'icon' => '',
+                        'icon' => 'folder',
                         'route_name' => 'categories',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'Categories'
+                        'title' => 'Categorias de Documentos'
                     ],
                     'add-product' => [
-                        'icon' => '',
+                        'icon' => 'trash',
                         'route_name' => 'add-product',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'Add Product',
+                        'title' => 'Papelera de reciclaje',
                     ],
-                    'products' => [
-                        'icon' => '',
-                        'title' => 'Products',
-                        'sub_menu' => [
-                            'product-list' => [
-                                'icon' => '',
-                                'route_name' => 'product-list',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Product List'
-                            ],
-                            'product-grid' => [
-                                'icon' => '',
-                                'route_name' => 'product-grid',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Product Grid'
-                            ]
-                        ]
-                    ],
-                    'transactions' => [
-                        'icon' => '',
-                        'title' => 'Transactions',
-                        'sub_menu' => [
-                            'transaction-list' => [
-                                'icon' => '',
-                                'route_name' => 'transaction-list',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Transaction List'
-                            ],
-                            'transaction-detail' => [
-                                'icon' => '',
-                                'route_name' => 'transaction-detail',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Transaction Detail'
-                            ]
-                        ]
-                    ],
-                    'sellers' => [
-                        'icon' => '',
-                        'title' => 'Sellers',
-                        'sub_menu' => [
-                            'seller-list' => [
-                                'icon' => '',
-                                'route_name' => 'seller-list',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Seller List'
-                            ],
-                            'seller-detail' => [
-                                'icon' => '',
-                                'route_name' => 'seller-detail',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Seller Detail'
-                            ]
-                        ]
-                    ],
-                    'reviews' => [
-                        'icon' => '',
-                        'route_name' => 'reviews',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Reviews'
-                    ],
+                    
                 ]
             ],
            
            
-            'point-of-sale' => [
-                'icon' => 'credit-card',
-                'route_name' => 'point-of-sale',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Point of Sale'
-            ],
-            'chat' => [
-                'icon' => 'message-square',
-                'route_name' => 'chat',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Chat'
-            ],
-            'post' => [
-                'icon' => 'file-text',
-                'route_name' => 'post',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Post'
-            ],
-            'calendar' => [
-                'icon' => 'calendar',
-                'route_name' => 'calendar',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Calendar'
-            ],
-            'devider',
-            'crud' => [
-                'icon' => 'edit',
-                'title' => 'Crud',
-                'sub_menu' => [
-                    'crud-data-list' => [
-                        'icon' => '',
-                        'route_name' => 'crud-data-list',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Data List'
-                    ],
-                    'crud-form' => [
-                        'icon' => '',
-                        'route_name' => 'crud-form',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Form'
-                    ]
-                ]
-            ],
+            // 'point-of-sale' => [
+            //     'icon' => 'credit-card',
+            //     'route_name' => 'point-of-sale',
+            //     'params' => [
+            //         'layout' => 'side-menu'
+            //     ],
+            //     'title' => 'Point of Sale'
+            // ],
+            // 'chat' => [
+            //     'icon' => 'message-square',
+            //     'route_name' => 'chat',
+            //     'params' => [
+            //         'layout' => 'side-menu'
+            //     ],
+            //     'title' => 'Chat'
+            // ],
+            // 'post' => [
+            //     'icon' => 'file-text',
+            //     'route_name' => 'post',
+            //     'params' => [
+            //         'layout' => 'side-menu'
+            //     ],
+            //     'title' => 'Post'
+            // ],
+            // 'calendar' => [
+            //     'icon' => 'calendar',
+            //     'route_name' => 'calendar',
+            //     'params' => [
+            //         'layout' => 'side-menu'
+            //     ],
+            //     'title' => 'Calendar'
+            // ],
+            // 'devider',
+            // 'crud' => [
+            //     'icon' => 'edit',
+            //     'title' => 'Crud',
+            //     'sub_menu' => [
+            //         'crud-data-list' => [
+            //             'icon' => '',
+            //             'route_name' => 'crud-data-list',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Data List'
+            //         ],
+            //         'crud-form' => [
+            //             'icon' => '',
+            //             'route_name' => 'crud-form',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Form'
+            //         ]
+            //     ]
+            // ],
             'users' => [
                 'icon' => 'users',
                 'title' => 'Users',
