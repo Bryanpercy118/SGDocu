@@ -142,6 +142,7 @@
         <!-- END: Pagination -->
     </div>
 
+    
 
     <!-- BEGIN: add Confirmation Modal -->
     <div id="add-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -156,6 +157,7 @@
         <!-- Formulario para añadir una nueva categoría -->
         <form action="" method="POST">
         @csrf
+
 
           <!-- Campos del formulario -->
           <div class="mb-3">
