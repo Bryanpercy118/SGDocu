@@ -16,6 +16,7 @@
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
+                        <th class="whitespace-nowrap">Area del Documento</th>
                         <th class="whitespace-nowrap">Nombre del Documento</th>
                         <th class="whitespace-nowrap">Tipo</th>
                         <th class="text-center whitespace-nowrap">ACCIONES</th>
@@ -24,6 +25,9 @@
                 <tbody>
                     
                         <tr class="intro-x">
+                            <td>
+                                <a href="" class="font-medium whitespace-nowrap">Farmacia</a>
+                            </td>
                             <td>
                                 <a href="" class="font-medium whitespace-nowrap">F02</a>
                             </td>
@@ -114,7 +118,7 @@
 
           <!-- Campos del formulario -->
           <div class="mb-3">
-            <label for="categoryName" class="form-label">Area donde pertenece el Documento</label>
+            <label for="categoryName" class="form-label">Area del Documento</label>
             <input type="text" class="form-control" id="name" name="name" required>
           </div>
           <div class="mb-3">

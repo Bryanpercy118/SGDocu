@@ -7,46 +7,18 @@
 @section('subcontent')
     <div class="grid grid-cols-12 gap-6 mt-8">
         <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
-            <h2 class="intro-y text-lg font-medium mr-auto mt-2">File Manager</h2>
+            <h2 class="intro-y text-lg font-medium mr-auto mt-2">Administrador de Documentos</h2>
             <!-- BEGIN: File Manager Menu -->
             <div class="intro-y box p-5 mt-6">
                 <div class="mt-1">
-                    <a href="" class="flex items-center px-3 py-2 rounded-md bg-primary text-white font-medium">
-                        <i class="w-4 h-4 mr-2" data-lucide="image"></i> Images
+                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
+                        <i class="w-4 h-4 mr-2" data-lucide="file"></i> Documentos
                     </a>
                     <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <i class="w-4 h-4 mr-2" data-lucide="video"></i> Videos
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <i class="w-4 h-4 mr-2" data-lucide="file"></i> Documents
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <i class="w-4 h-4 mr-2" data-lucide="users"></i> Shared
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <i class="w-4 h-4 mr-2" data-lucide="trash"></i> Trash
+                        <i class="w-4 h-4 mr-2" data-lucide="trash"></i> Papelera
                     </a>
                 </div>
-                <div class="border-t border-slate-200 dark:border-darkmode-400 mt-4 pt-4">
-                    <a href="" class="flex items-center px-3 py-2 rounded-md">
-                        <div class="w-2 h-2 bg-pending rounded-full mr-3"></div> Custom Work
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <div class="w-2 h-2 bg-success rounded-full mr-3"></div> Important Meetings
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <div class="w-2 h-2 bg-warning rounded-full mr-3"></div> Work
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <div class="w-2 h-2 bg-pending rounded-full mr-3"></div> Design
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <div class="w-2 h-2 bg-danger rounded-full mr-3"></div> Next Week
-                    </a>
-                    <a href="" class="flex items-center px-3 py-2 mt-2 rounded-md">
-                        <i class="w-4 h-4 mr-2" data-lucide="plus"></i> Add New Label
-                    </a>
-                </div>
+                
             </div>
             <!-- END: File Manager Menu -->
         </div>
@@ -55,7 +27,7 @@
             <div class="intro-y flex flex-col-reverse sm:flex-row items-center">
                 <div class="w-full sm:w-auto relative mr-auto mt-3 sm:mt-0">
                     <i class="w-4 h-4 absolute my-auto inset-y-0 ml-3 left-0 z-10 text-slate-500" data-lucide="search"></i>
-                    <input type="text" class="form-control w-full sm:w-64 box px-10" placeholder="Search files">
+                    <input type="text" class="form-control w-full sm:w-64 box px-10" placeholder="Buscar Documento">
                     <div class="inbox-filter dropdown absolute inset-y-0 mr-3 right-0 flex items-center" data-tw-placement="bottom-start">
                         <i class="dropdown-toggle w-4 h-4 cursor-pointer text-slate-500" role="button" aria-expanded="false" data-tw-toggle="dropdown" data-lucide="chevron-down"></i>
                         <div class="inbox-filter__dropdown-menu dropdown-menu pt-2">
@@ -92,7 +64,7 @@
                     </div>
                 </div>
                 <div class="w-full sm:w-auto flex">
-                    <button class="btn btn-primary shadow-md mr-2">Upload New Files</button>
+                    {{-- <button class="btn btn-primary shadow-md mr-2">Upload New Files</button>
                     <div class="dropdown">
                         <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                             <span class="w-5 h-5 flex items-center justify-center">
@@ -113,7 +85,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- END: File Manager Filter -->
