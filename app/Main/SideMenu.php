@@ -120,7 +120,7 @@ class SideMenu
             // ],
             'users' => [
                 'icon' => 'users',
-                'title' => 'Users',
+                'title' => 'Usuarios',
                 'sub_menu' => [
                     'users-layout-1' => [
                         'icon' => '',
