@@ -48,7 +48,7 @@ class SideMenu
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'Categorias de Documentos'
+                        'title' => 'Area Documental'
                     ],
                     'add-product' => [
                         'icon' => 'trash',
