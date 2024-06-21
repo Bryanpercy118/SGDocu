@@ -15,52 +15,61 @@ class SideMenu
         return [
             'dashboard' => [
                 'icon' => 'home',
-                'title' => 'Panel Principal',
+                'title' => 'Area Administrativa',
                 'route_name' => 'dashboard-overview-1',
                 'params' => [
                     'layout' => 'side-menu',
                 ],
             ],
-            'inbox' => [
-                'icon' => 'inbox',
-                'route_name' => 'inbox',
+            'dashboard2' => [
+                'icon' => 'home',
+                'title' => 'Area Asistencial',
+                'route_name' => 'dashboard-overview-1',
                 'params' => [
-                    'layout' => 'side-menu'
+                    'layout' => 'side-menu',
                 ],
-                'title' => 'Carga de Documentos'
             ],
             'file-manager' => [
                 'icon' => 'hard-drive',
-                'route_name' => 'file-manager',
+                'route_name' => 'categories',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
-                'title' => 'Administrador de Documentos'
+                'title' => 'Gestion de Servicios'
             ],
             
             'e-commerce' => [
-                'icon' => 'settings',
-                'title' => 'Configuracion',
-                'sub_menu' => [
-                    'categories' => [
-                        'icon' => 'folder',
-                        'route_name' => 'categories',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Area Documental'
-                    ],
-                    'add-product' => [
-                        'icon' => 'trash',
-                        'route_name' => 'add-product',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Papelera de reciclaje',
-                    ],
-                    
-                ]
+                'icon' => 'trash',
+                'route_name' => 'add-product',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Papelera de reciclaje',
             ],
+            'e-commerce2' => [
+                'icon' => 'trash',
+                'route_name' => 'add-product',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Soporte',
+            ],
+            // 'e-commerce' => [
+            //     'icon' => 'settings',
+            //     'title' => 'Configuracion',
+            //     'sub_menu' => [
+                  
+            //         'add-product' => [
+            //             'icon' => 'trash',
+            //             'route_name' => 'add-product',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Papelera de reciclaje',
+            //         ],
+                    
+            //     ]
+            // ],
            
            
             // 'point-of-sale' => [
@@ -118,20 +127,20 @@ class SideMenu
             //         ]
             //     ]
             // ],
-            'users' => [
-                'icon' => 'users',
-                'title' => 'Usuarios',
-                'sub_menu' => [
-                    'users-layout-1' => [
-                        'icon' => '',
-                        'route_name' => 'users-layout-1',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Layout 1'
-                    ],
-                ]
-            ],
+            // 'users' => [
+            //     'icon' => 'users',
+            //     'title' => 'Usuarios',
+            //     'sub_menu' => [
+            //         'users-layout-1' => [
+            //             'icon' => '',
+            //             'route_name' => 'users-layout-1',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Layout 1'
+            //         ],
+            //     ]
+            // ],
             // 'profile' => [
             //     'icon' => 'trello',
             //     'title' => 'Profile',

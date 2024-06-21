@@ -6,18 +6,18 @@
 @endsection
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Gestion de Area Documental</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Gestion de Servicios</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal"
-                data-tw-target="#add-confirmation-modal">Registrar Nueva Area</button>
+                data-tw-target="#add-confirmation-modal">Registrar Nuevo Servicio</button>
         </div>
         <!-- BEGIN: Data List -->
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
-                        <th class="whitespace-nowrap">Nombre del Area</th>
+                        <th class="whitespace-nowrap">Nombre del Servicio</th>
                         <th class="text-center whitespace-nowrap">ACCIONES</th>
                     </tr>
                 </thead>
@@ -170,12 +170,12 @@
 
                             <!-- Campos del formulario -->
                             <div class="mb-3">
-                                <label for="categoryName" class="form-label">Nombre del Area </label>
+                                <label for="categoryName" class="form-label">Nombre de Servicio </label>
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
 
                             <!-- Otros campos del formulario, si los necesitas -->
-                            <button type="submit" class="btn btn-primary">Añadir Nueva Area Documental</button>
+                            <button type="submit" class="btn btn-primary">Añadir Nuevo Servicio</button>
                             <button type="button" data-tw-dismiss="modal"
                                 class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
                         </form>
