@@ -1,20 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\DarkModeController;
-use App\Http\Controllers\ColorSchemeController;
-
+use App\Http\Controllers\{
+    ServicioController,ColorSchemeController, 
+    DocumentoController,PageController,AuthController, CarpetaController,DarkModeController, 
+    AreaController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('dark-mode-switcher', [DarkModeController::class, 'switch'])->name('dark-mode-switcher');
@@ -102,4 +96,8 @@ Route::middleware('auth')->group(function() {
         Route::get('slider-page', 'slider')->name('slider');
         Route::get('image-zoom-page', 'imageZoom')->name('image-zoom');
     });
+    Route::resource('servicios', ServicioController::class);
+    Route::resource('documentos', DocumentoController::class);
+    Route::resource('carpetas', CarpetaController::class);
+    Route::resource('areas', AreaController::class);
 });
