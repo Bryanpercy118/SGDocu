@@ -22,81 +22,37 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach($servicios as $servicio)
                     <tr class="intro-x">
                         <td>
-                            <a href="" class="font-medium whitespace-nowrap">Farmacia</a>
+                            <a href="" class="font-medium whitespace-nowrap">{{ $servicio->nombre_del_servicio }}</a>
                         </td>
-
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 <a class="flex items-center mr-3 edit-category-link" data-tw-toggle="modal"
-                                    data-tw-target="#edit-confirmation-modal" style="cursor: pointer;">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Editar
-                                </a>
+                                data-tw-target="#edit-confirmation-modal"
+                                data-servicio-id="{{ $servicio->id }}"
+                                data-servicio-nombre="{{ $servicio->nombre_del_servicio }}"
+                                data-servicio-area-id="{{ $servicio->area_id }}" style="cursor: pointer;">
+                                <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Editar
+                             </a>
+                             
+                            
                                 <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                    data-tw-target="#delete-confirmation-modal">
-                                    <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
-                                </a>
+                                data-tw-target="#delete-confirmation-modal" onclick="event.preventDefault();
+                                document.getElementById('delete-servicio-{{ $servicio->id }}-form').submit();">
+                                <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
+                            </a>
+                            
+                            <form id="delete-servicio-{{ $servicio->id }}-form" action="{{ route('servicios.destroy', ['servicio' => $servicio->id]) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                             </div>
                         </td>
                     </tr>
-                    <tr class="intro-x">
-                        <td>
-                            <a href="" class="font-medium whitespace-nowrap">Tesoreria</a>
-                        </td>
-
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
-                                <a class="flex items-center mr-3 edit-category-link" data-tw-toggle="modal"
-                                    data-tw-target="#edit-confirmation-modal" style="cursor: pointer;">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Editar
-                                </a>
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                    data-tw-target="#delete-confirmation-modal">
-                                    <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="intro-x">
-                        <td>
-                            <a href="" class="font-medium whitespace-nowrap">Talento Humano</a>
-                        </td>
-
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
-                                <a class="flex items-center mr-3 edit-category-link" data-tw-toggle="modal"
-                                    data-tw-target="#edit-confirmation-modal" style="cursor: pointer;">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Editar
-                                </a>
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                    data-tw-target="#delete-confirmation-modal">
-                                    <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="intro-x">
-                        <td>
-                            <a href="" class="font-medium whitespace-nowrap">Medicina General</a>
-                        </td>
-
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
-                                <a class="flex items-center mr-3 edit-category-link" data-tw-toggle="modal"
-                                    data-tw-target="#edit-confirmation-modal" style="cursor: pointer;">
-                                    <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Editar
-                                </a>
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                    data-tw-target="#delete-confirmation-modal">
-                                    <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
+                    @endforeach
+                </tbody>                
             </table>
         </div>
         <!-- END: Data List -->
@@ -159,30 +115,103 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addCategoryModalLabel"></h5>
+                        <h5 class="modal-title" id="addCategoryModalLabel">Añadir Nuevo Servicio</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Formulario para añadir una nueva categoría -->
-                        <form action="" method="POST">
+                        <!-- Formulario para añadir un nuevo servicio -->
+                        <form action="{{ route('servicios.store') }}" method="POST">
                             @csrf
-
-
-                            <!-- Campos del formulario -->
+    
+                            <!-- Campo de selección del área -->
                             <div class="mb-3">
-                                <label for="categoryName" class="form-label">Nombre de Servicio </label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="area_id" class="form-label">Área</label>
+                                <select class="form-select" id="area_id" name="area_id" required>
+                                    <option value="">Seleccione el Área</option>
+                                    @foreach($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-
+    
+                            <!-- Campo del nombre del servicio -->
+                            <div class="mb-3">
+                                <label for="serviceName" class="form-label">Nombre del Servicio</label>
+                                <input type="text" class="form-control" id="nombre_del_servicio" name="nombre_del_servicio" required>
+                            </div>
+    
                             <!-- Otros campos del formulario, si los necesitas -->
                             <button type="submit" class="btn btn-primary">Añadir Nuevo Servicio</button>
-                            <button type="button" data-tw-dismiss="modal"
-                                class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancelar</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
     <!-- END: add Confirmation Modal -->
+
+ <!-- BEGIN: Edit Confirmation Modal -->
+<div id="edit-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Editar Servicio</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para editar un servicio -->
+                    <form id="edit-servicio-form" method="POST" action="{{ route('servicios.update', ['servicio' => $servicio->id]) }}">
+                        @csrf
+                        @method('PUT')
+                    
+                        <!-- Campo de selección del área -->
+                        <div class="mb-3">
+                            <label for="edit-area_id" class="form-label">Área</label>
+                            <select class="form-select" id="edit-area_id" name="edit_area_id" required>
+                                <option value="">Seleccione el Área</option>
+                                @foreach($areas as $area)
+                                    <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    
+                        <!-- Campo del nombre del servicio -->
+                        <div class="mb-3">
+                            <label for="edit-nombre_del_servicio" class="form-label">Nombre del Servicio</label>
+                            <input type="text" class="form-control" id="edit-nombre_del_servicio" name="edit_nombre_del_servicio" required>
+                        </div>
+                    
+                        <!-- Campo oculto para almacenar el ID del servicio -->
+                        <input type="hidden" id="edit-servicio_id" name="edit_servicio_id" value="{{ $servicio->id }}">
+                    
+                        <!-- Otros campos del formulario, si los necesitas -->
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-outline-secondary w-24 mr-1" data-dismiss="modal">Cancelar</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: Edit Confirmation Modal -->
+
+<script>
+    $('#edit-confirmation-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que activó el modal
+        var servicioId = button.data('servicio-id'); // Extraer información de los atributos de datos
+        var servicioNombre = button.data('servicio-nombre');
+        var servicioAreaId = button.data('servicio-area-id');
+
+        // Actualizar los valores de los campos del formulario en el modal
+        var modal = $(this);
+        modal.find('#edit-servicio_id').val(servicioId);
+        modal.find('#edit-nombre_del_servicio').val(servicioNombre);
+        modal.find('#edit-area_id').val(servicioAreaId);
+    });
+</script>
+
+
 @endsection

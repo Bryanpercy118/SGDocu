@@ -18,4 +18,6 @@ class Documento extends Model
     {
         return $this->belongsTo(Carpeta::class);
     }
+
+    
 }

@@ -24,7 +24,7 @@ class SideMenu
             'dashboard2' => [
                 'icon' => 'home',
                 'title' => 'Area Asistencial',
-                'route_name' => 'dashboard-overview-1',
+                'route_name' => 'dashboard-overview-2',
                 'params' => [
                     'layout' => 'side-menu',
                 ],

@@ -21,7 +21,8 @@ class CarpetaController extends Controller
         ]);
 
         $carpeta = Carpeta::create($request->all());
-        return response()->json($carpeta, 201);
+        return redirect()->route('servicios.show', $request->servicio_id)->with('success', 'Carpeta creada con éxito.');
+   
     }
 
     public function show(Carpeta $carpeta)

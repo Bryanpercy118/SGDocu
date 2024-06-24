@@ -22,14 +22,16 @@ class ServicioController extends Controller
         ]);
 
         $servicio = Servicio::create($request->all());
-        return response()->json($servicio, 201);
+        return redirect()->back();
     }
 
     public function show(Servicio $servicio)
     {
-        $servicio->load('area');
-        return response()->json($servicio);
+        $servicio->load(['area', 'carpetas.documentos']); 
+        return view('pages.dashboard-overview-3', compact('servicio'));
     }
+    
+    
 
     public function update(Request $request, Servicio $servicio)
     {
@@ -39,12 +41,12 @@ class ServicioController extends Controller
         ]);
 
         $servicio->update($request->all());
-        return response()->json($servicio);
+        return redirect()->back();
     }
 
     public function destroy(Servicio $servicio)
     {
         $servicio->delete();
-        return response()->json(null, 204);
+        return redirect()->back();
     }
 }

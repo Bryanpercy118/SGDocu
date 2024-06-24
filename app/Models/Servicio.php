@@ -15,4 +15,10 @@ class Servicio extends Model
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function carpetas()
+    {
+        return $this->hasMany(Carpeta::class);
+    }
+
 }

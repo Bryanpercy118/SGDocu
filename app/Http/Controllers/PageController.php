@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
+use App\Models\Servicio;
 
 class PageController extends Controller
 {
@@ -14,13 +16,8 @@ class PageController extends Controller
      */
     public function dashboardOverview1()
     {
-        return view('pages/dashboard-overview-1', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
-        ]);
+        $servicios = Servicio::all();
+        return view('pages/dashboard-overview-1',compact('servicios'));
     }
 
     /**
@@ -31,7 +28,8 @@ class PageController extends Controller
      */
     public function dashboardOverview2()
     {
-        return view('pages/dashboard-overview-2');
+        $servicios = Servicio::all();
+        return view('pages/dashboard-overview-2',compact('servicios'));
     }
 
     /**
@@ -75,7 +73,9 @@ class PageController extends Controller
      */
     public function categories()
     {
-        return view('pages/categories');
+        $servicios = Servicio::all();
+        $areas = Area::all();
+        return view('pages/categories', compact('areas','servicios'));
     }
 
     /**
