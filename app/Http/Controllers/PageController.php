@@ -16,9 +16,13 @@ class PageController extends Controller
      */
     public function dashboardOverview1()
     {
-        $servicios = Servicio::all();
-        return view('pages/dashboard-overview-1',compact('servicios'));
+        $servicios = Servicio::whereHas('area', function ($query) {
+            $query->where('nombre_area', 'Area Administrativa');
+        })->get();
+
+        return view('pages/dashboard-overview-1', compact('servicios'));
     }
+
 
     /**
      * Show specified view.
@@ -28,7 +32,9 @@ class PageController extends Controller
      */
     public function dashboardOverview2()
     {
-        $servicios = Servicio::all();
+        $servicios = Servicio::whereHas('area', function ($query) {
+            $query->where('nombre_area', 'Area Asistencial');
+        })->get();
         return view('pages/dashboard-overview-2',compact('servicios'));
     }
 
