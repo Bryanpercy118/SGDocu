@@ -151,7 +151,7 @@
     </div>    
     <!-- END: add Confirmation Modal -->
 
- <!-- BEGIN: Edit Confirmation Modal -->
+ {{-- <!-- BEGIN: Edit Confirmation Modal -->
 <div id="edit-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -195,7 +195,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- END: Edit Confirmation Modal -->
 
 <script>
