@@ -18,7 +18,6 @@ class DocumentoController extends Controller
         $request->validate([
             'carpeta_id' => 'required|exists:carpetas,id',
             'documento' => 'required|file|mimes:pdf', // Validación del archivo PDF con tamaño máximo de 2MB
-            'nombre' => 'required|string|max:255', // Validación del nombre del documento
         ]);
 
         // Obtener el archivo cargado
@@ -30,7 +29,7 @@ class DocumentoController extends Controller
         // Crear el documento en la base de datos
         $documento = new Documento([
             'carpeta_id' => $request->carpeta_id,
-            'nombre_documento' => $rutaArchivo, // Aquí podrías guardar el nombre del archivo si lo prefieres
+            'nombre_documento' => $archivo->getClientOriginalName(), // Obtener el nombre original del archivo
             'tipo' => $archivo->getClientMimeType(), // Obtener el tipo MIME del archivo
             'peso' => $archivo->getSize(), // Obtener el tamaño del archivo en bytes
         ]);
@@ -39,6 +38,7 @@ class DocumentoController extends Controller
         // Redireccionar de vuelta a la página anterior con un mensaje de éxito
         return back()->with('success', 'Documento cargado correctamente.');
     }
+
 
 
     public function show(Documento $documento)
@@ -63,6 +63,6 @@ class DocumentoController extends Controller
     public function destroy(Documento $documento)
     {
         $documento->delete();
-        return response()->json(null, 204);
+        return redirect()->back();
     }
 }
