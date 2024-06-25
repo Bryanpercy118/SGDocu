@@ -66,3 +66,4 @@ class DocumentoController extends Controller
         return redirect()->back();
     }
 }
+
