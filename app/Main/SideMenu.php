@@ -47,7 +47,7 @@ class SideMenu
                 'title' => 'Papelera de reciclaje',
             ],
             'e-commerce2' => [
-                'icon' => 'trash',
+                'icon' => 'help-circle',
                 'route_name' => 'add-product',
                 'params' => [
                     'layout' => 'side-menu'
