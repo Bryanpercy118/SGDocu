@@ -76,7 +76,7 @@ class DocumentoController extends Controller
         
             // Guardar el objeto Papelera
             $papelera->save();
-            $documento->delete();
+           
             // Ejecutar cualquier otra operación necesaria
         
             DB::commit();
