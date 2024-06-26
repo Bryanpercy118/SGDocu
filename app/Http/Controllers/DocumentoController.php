@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Documento;
 use Illuminate\Http\Request;
-
+use App\Models\Papelera;
+use Illuminate\Support\Facades\DB;
 class DocumentoController extends Controller
 {
     public function index()
@@ -62,8 +63,30 @@ class DocumentoController extends Controller
 
     public function destroy(Documento $documento)
     {
-        $documento->delete();
-        return redirect()->back();
+        DB::beginTransaction();
+        try {
+            // Crear el objeto Papelera
+            $papelera = new Papelera([
+                'documento_id' => $documento->id,
+                'carpeta_id' => $documento->carpeta_id,
+                'nombre_documento' => $documento->nombre_documento,
+                'tipo' => $documento->tipo,
+                'peso' => $documento->peso,
+            ]);
+        
+            // Guardar el objeto Papelera
+            $papelera->save();
+            $documento->delete();
+            // Ejecutar cualquier otra operación necesaria
+        
+            DB::commit();
+        
+            // Redireccionar con éxito
+            return redirect()->back()->with('success', 'Documento movido a la papelera exitosamente.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd('Error al mover el documento a la papelera:', $e->getMessage());
+        }
     }
 }
 

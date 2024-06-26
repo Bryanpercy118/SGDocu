@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     ServicioController,ColorSchemeController, 
     DocumentoController,PageController,AuthController, CarpetaController,DarkModeController, 
-    AreaController};
+    AreaController, PapeleraController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function() {
         Route::get('chat-page', 'chat')->name('chat');
         Route::get('post-page', 'post')->name('post');
         Route::get('calendar-page', 'calendar')->name('calendar');
+        Route::get('trash-page', 'trash')->name('trash');
         Route::get('crud-data-list-page', 'crudDataList')->name('crud-data-list');
         Route::get('crud-form-page', 'crudForm')->name('crud-form');
         Route::get('users-layout-1-page', 'usersLayout1')->name('users-layout-1');
@@ -100,4 +101,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('documentos', DocumentoController::class);
     Route::resource('carpetas', CarpetaController::class);
     Route::resource('areas', AreaController::class);
+        
+    Route::resource('papeleras', PapeleraController::class)->only(['index', 'destroy']);
+    Route::post('papeleras/restore/{id}', [PapeleraController::class, 'restore'])->name('papeleras.restore');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Area;
+use App\Models\Papelera;
 use App\Models\Servicio;
 
 class PageController extends Controller
@@ -49,6 +50,11 @@ class PageController extends Controller
         return view('pages/dashboard-overview-3');
     }
 
+    public function trash()
+    {
+        $trashedDocuments = Papelera::all();
+        return view('pages/trash', compact('trashedDocuments'));
+    }
     /**
      * Show specified view.
      *

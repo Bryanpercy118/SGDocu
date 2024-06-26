@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Documento extends Model
 {
@@ -19,5 +20,8 @@ class Documento extends Model
         return $this->belongsTo(Carpeta::class);
     }
 
-    
+    /**
+     * Override the delete method to move the document to the trash.
+     */
+   
 }

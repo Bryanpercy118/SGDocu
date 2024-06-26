@@ -40,7 +40,7 @@ class SideMenu
             
             'e-commerce' => [
                 'icon' => 'trash',
-                'route_name' => 'add-product',
+                'route_name' => 'trash',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
