@@ -57,7 +57,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="bg-white">
-                                                @foreach($carpeta->documentos as $documento)
+                                                @foreach($carpeta->documentos->where('en_papelera', false) as $documento)
                                                     <tr>
                                                         <td class="py-4 px-6 border-b border-gray-200">{{ str_replace('.pdf','',$documento->nombre_documento) }}</td>
                                                         <td class="py-4 px-6 border-b border-gray-200">{{ str_replace('application/', '', $documento->tipo) }}</td>
@@ -74,8 +74,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    
-                                    
                                     @else
                                         <p>No hay documentos en esta carpeta.</p>
                                     @endif
@@ -84,8 +82,6 @@
                         </div>
                     </div>
                 </div>
-                
-
             @endforeach
         </div>
     </div>

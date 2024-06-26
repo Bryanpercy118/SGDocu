@@ -23,6 +23,7 @@ class PapeleraController extends Controller
             'nombre_documento' => $trashedDocument->nombre_documento,
             'tipo' => $trashedDocument->tipo,
             'peso' => $trashedDocument->peso,
+            'en_papelera' => false,
         ]);
         $trashedDocument->delete();
         return redirect()->back()->with('success', 'Document restored successfully.');

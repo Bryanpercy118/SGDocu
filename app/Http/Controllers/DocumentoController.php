@@ -32,7 +32,8 @@ class DocumentoController extends Controller
             'carpeta_id' => $request->carpeta_id,
             'nombre_documento' => $archivo->getClientOriginalName(), // Obtener el nombre original del archivo
             'tipo' => $archivo->getClientMimeType(), // Obtener el tipo MIME del archivo
-            'peso' => $archivo->getSize(), // Obtener el tamaño del archivo en bytes
+            'peso' => $archivo->getSize(),
+            'en_papelera'=>false // Obtener el tamaño del archivo en bytes
         ]);
         $documento->save();
 
@@ -62,31 +63,32 @@ class DocumentoController extends Controller
     }
 
     public function destroy(Documento $documento)
-    {
-        DB::beginTransaction();
-        try {
-            // Crear el objeto Papelera
-            $papelera = new Papelera([
-                'documento_id' => $documento->id,
-                'carpeta_id' => $documento->carpeta_id,
-                'nombre_documento' => $documento->nombre_documento,
-                'tipo' => $documento->tipo,
-                'peso' => $documento->peso,
-            ]);
-        
-            // Guardar el objeto Papelera
-            $papelera->save();
-           
-            // Ejecutar cualquier otra operación necesaria
-        
-            DB::commit();
-        
-            // Redireccionar con éxito
-            return redirect()->back()->with('success', 'Documento movido a la papelera exitosamente.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd('Error al mover el documento a la papelera:', $e->getMessage());
-        }
+{
+    DB::beginTransaction();
+    try {
+        // Crear el objeto Papelera
+        Papelera::create([
+            'documento_id' => $documento->id,
+            'carpeta_id' => $documento->carpeta_id,
+            'nombre_documento' => $documento->nombre_documento,
+            'tipo' => $documento->tipo,
+            'peso' => $documento->peso,
+        ]);
+
+        // Actualizar el documento para marcarlo como en la papelera
+        $documento->update([
+            'en_papelera' => true,
+        ]);
+
+        DB::commit();
+
+        // Redireccionar con éxito
+        return redirect()->back()->with('success', 'Documento movido a la papelera exitosamente.');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        dd('Error al mover el documento a la papelera:', $e->getMessage());
     }
+}
+
 }
 
