@@ -111,8 +111,8 @@
             $initial = strtoupper(substr($user->email, 0, 1)); // Obtener la primera letra y convertirla a mayúscula
         @endphp
         <div class="intro-x dropdown w-8 h-8">
-            <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110 flex items-center justify-center bg-gray-200" role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                <span class="text-lg font-bold text-white">{{ $initial }}</span>
+            <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110 flex items-center justify-center bg-white" role="button" aria-expanded="false" data-tw-toggle="dropdown">
+                <span class="text-lg font-bold text-black">{{ $initial }}</span>
             </div>
             <div class="dropdown-menu w-56">
                 <ul class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">

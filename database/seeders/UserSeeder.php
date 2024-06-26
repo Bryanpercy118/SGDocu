@@ -17,16 +17,17 @@ class UserSeeder extends Seeder
     {
         // Credenciales de Prueba
         \App\Models\User::insert([
-            [ 
-                'name' => 'Left4code',
-                'email' => 'carlosfarith@gmail.com',
+            [
+                'name' => 'Gestion Documental',
+                'email' => 'gestiondocumental@hrploez.gov.co',
                 'email_verified_at' => now(),
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'password' => bcrypt('Gestiondocumental2024'),
                 'gender' => 'male',
                 'active' => 1,
                 'remember_token' => Str::random(10)
             ]
         ]);
+        
 
         
     }
