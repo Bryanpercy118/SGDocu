@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     ServicioController,ColorSchemeController, 
     DocumentoController,PageController,AuthController, CarpetaController,DarkModeController, 
-    AreaController, PapeleraController};
+    AreaController, PapeleraController, SoporteController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,7 +101,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('documentos', DocumentoController::class);
     Route::resource('carpetas', CarpetaController::class);
     Route::resource('areas', AreaController::class);
-        
+    Route::resource('soporte', SoporteController::class);
     Route::resource('papeleras', PapeleraController::class)->only(['index', 'destroy']);
     Route::post('papeleras/restore/{id}', [PapeleraController::class, 'restore'])->name('papeleras.restore');
 });

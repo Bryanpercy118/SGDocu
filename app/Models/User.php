@@ -47,6 +47,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function soportes()
+    {
+        return $this->hasMany(Soporte::class);
+    }
     protected $appends = ['photo'];
 
     /**

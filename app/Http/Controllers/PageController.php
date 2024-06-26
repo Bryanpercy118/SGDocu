@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\Papelera;
 use App\Models\Servicio;
+use App\Models\Soporte;
 
 class PageController extends Controller
 {
@@ -98,7 +99,8 @@ class PageController extends Controller
      */
     public function addProduct()
     {
-        return view('pages/add-product');
+        $soportes = Soporte::all();
+        return view('pages/add-product',compact('soportes'));
     }
 
     /**

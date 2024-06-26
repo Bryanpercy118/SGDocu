@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carpeta;
+use App\Models\Soporte;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarpetaController extends Controller
 {
@@ -21,8 +23,11 @@ class CarpetaController extends Controller
         ]);
 
         $carpeta = Carpeta::create($request->all());
+
+        // Crear registro en Soporte
+        $this->createSoporteRecord('Creación de carpeta', "Se creó una nueva carpeta {$carpeta->nombre_carpeta}");
+
         return redirect()->route('servicios.show', $request->servicio_id)->with('success', 'Carpeta creada con éxito.');
-   
     }
 
     public function show(Carpeta $carpeta)
@@ -39,12 +44,35 @@ class CarpetaController extends Controller
         ]);
 
         $carpeta->update($request->all());
+
+        // Crear registro en Soporte
+        $this->createSoporteRecord('Actualización de carpeta', "Se actualizó la carpeta {$carpeta->nombre_carpeta}");
+
         return response()->json($carpeta);
     }
 
     public function destroy(Carpeta $carpeta)
     {
+        // Obtener el ID del servicio antes de eliminar la carpeta
+        $servicioId = $carpeta->servicio_id;
+
         $carpeta->delete();
-        return response()->json(null, 204);
+
+        // Crear registro en Soporte
+        $this->createSoporteRecord('Eliminación de carpeta', "Se eliminó la carpeta {$carpeta->nombre_carpeta}");
+
+        return redirect()->route('servicios.show', $servicioId)->with('success', 'Carpeta eliminada con éxito.');
+    }
+
+    // Método privado para crear registro en Soporte
+    private function createSoporteRecord($issueType, $description)
+    {
+        $user = Auth::user();
+
+        Soporte::create([
+            'user_id' => $user->id,
+            'issue_type' => $issueType,
+            'description' => $description,
+        ]);
     }
 }
