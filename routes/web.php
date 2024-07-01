@@ -97,7 +97,27 @@ Route::middleware('auth')->group(function() {
         Route::get('slider-page', 'slider')->name('slider');
         Route::get('image-zoom-page', 'imageZoom')->name('image-zoom');
     });
-    Route::resource('servicios', ServicioController::class);
+        
+    // Ruta para mostrar la lista de servicios
+    Route::get('/servicios', [ServicioController::class, 'index'])->name('servicios.index');
+
+    // Ruta para mostrar el formulario de creación
+    Route::get('/servicios/create', [ServicioController::class, 'create'])->name('servicios.create');
+
+    // Ruta para almacenar un nuevo servicio
+    Route::post('/servicios', [ServicioController::class, 'store'])->name('servicios.store');
+
+    // Ruta para mostrar el formulario de edición
+    Route::get('/servicios/{servicio}/edit', [ServicioController::class, 'edit'])->name('servicios.edit');
+
+    //Ruta Services.show
+    Route::get('/servicios/{servicio}', [ServicioController::class, 'show'])->name('servicios.show');
+
+    // Ruta para actualizar un servicio existente
+    Route::put('/servicios/{servicio}', [ServicioController::class, 'update'])->name('servicios.update');
+
+    // Ruta para eliminar un servicio
+    Route::delete('/servicios/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');
     Route::resource('documentos', DocumentoController::class);
     Route::resource('carpetas', CarpetaController::class);
     Route::resource('areas', AreaController::class);

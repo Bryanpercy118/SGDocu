@@ -67,7 +67,7 @@ class DocumentoController extends Controller
         // Crear registro en Soporte
         $this->createSoporteRecord('Actualización de documento', "Se actualizó el documento {$documento->nombre_documento}");
 
-        return response()->json($documento);
+        return redirect()->back();
     }
 
     public function destroy(Documento $documento)

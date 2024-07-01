@@ -39,16 +39,15 @@ class ServicioController extends Controller
     public function update(Request $request, Servicio $servicio)
     {
         $request->validate([
+            'nombre_del_servicio' => 'required',
             'area_id' => 'required|exists:areas,id',
-            'nombre_del_servicio' => 'required|string|max:255',
         ]);
 
         $servicio->update($request->all());
+        $this->createSoporteRecord('Edicion de servicio', "Se edito un nuevo servicio {$servicio->nombre_del_servicio}");
 
-        // Crear registro en Soporte
-        $this->createSoporteRecord('Actualización de servicio', "Se actualizó el servicio: {$servicio->nombre_del_servicio}");
-
-        return redirect()->back()->with('success', 'Servicio actualizado correctamente.');
+        return redirect()->route('categories')
+                         ->with('success', 'Servicio actualizado exitosamente.');
     }
 
     public function destroy(Servicio $servicio)
