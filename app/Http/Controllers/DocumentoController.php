@@ -8,6 +8,7 @@ use App\Models\Papelera;
 use Illuminate\Support\Facades\DB;
 use App\Models\Soporte;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str; 
 
 class DocumentoController extends Controller
 {
@@ -46,6 +47,8 @@ class DocumentoController extends Controller
     public function show(Documento $documento)
     {
         $documento->load('carpeta');
+        $documento->nombre_documento_recortado = Str::limit($documento->nombre_documento, 30, '...');
+       
         return response()->json($documento);
     }
 

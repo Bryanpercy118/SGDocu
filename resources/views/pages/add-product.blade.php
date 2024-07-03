@@ -18,9 +18,10 @@
                                 <div class="w-full xl:w-1/4 text-sm mb-1 xl:mb-0"> <!-- Adjust width as per your design -->
                                     <span class="font-semibold">Tipo:</span> {{ $soporte->issue_type }}
                                 </div>
-                                <div class="w-full xl:w-1/2 text-sm mb-1 xl:mb-0"> <!-- Adjust width as per your design -->
-                                    <span class="font-semibold">Descripción:</span> {{ $soporte->description }}
+                                <div class="w-full xl:w-1/2 text-sm mb-1 xl:mb-0"> <!-- Ajusta el ancho según tu diseño -->
+                                    <span class="font-semibold">Descripción:</span> {{ Str::limit($soporte->description, 60, '...') }}
                                 </div>
+                                
                                 <div class="w-full xl:w-1/4 text-sm mb-1 xl:mb-0"> <!-- Adjust width as per your design -->
                                     <span class="font-semibold">Usuario:</span> {{ $soporte->user->email }}
                                 </div>

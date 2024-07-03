@@ -30,7 +30,9 @@
                         <tbody class="bg-white">
                             @foreach($carpeta->documentos->where('en_papelera', false) as $documento)
                                 <tr>
-                                    <td class="py-4 px-6 border-b border-gray-200">{{ str_replace('.pdf','',$documento->nombre_documento) }}</td>
+                                    <td class="py-4 px-6 border-b border-gray-200">
+                                        {{ \Illuminate\Support\Str::limit(str_replace('.pdf','',$documento->nombre_documento), 30, $end='...') }}
+                                    </td>
                                     <td class="py-4 px-6 border-b border-gray-200">{{ str_replace('application/', '', $documento->tipo) }}</td>
                                     <td class="py-4 px-6 border-b border-gray-200">{{ round($documento->peso / 1048576, 2) }} MB</td>
                                     <td class="py-4 px-6 border-b border-gray-200">
