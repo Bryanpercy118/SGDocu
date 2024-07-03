@@ -119,6 +119,7 @@ Route::middleware('auth')->group(function() {
     // Ruta para eliminar un servicio
     Route::delete('/servicios/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');
     Route::resource('documentos', DocumentoController::class);
+    Route::get('documentos/{documento}/descargar', [DocumentoController::class, 'descargar'])->name('documentos.descargar');
     Route::resource('carpetas', CarpetaController::class);
     Route::resource('areas', AreaController::class);
     Route::resource('soporte', SoporteController::class);

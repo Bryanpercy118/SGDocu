@@ -21,31 +21,27 @@ class DocumentoController extends Controller
     {
         $request->validate([
             'carpeta_id' => 'required|exists:carpetas,id',
-            'documento' => 'required|file|mimes:pdf', // Validación del archivo PDF con tamaño máximo de 2MB
+            'documento' => 'required|file|mimes:pdf',
         ]);
 
-        // Obtener el archivo cargado
         $archivo = $request->file('documento');
-
-        // Guardar el archivo en el almacenamiento
         $rutaArchivo = $archivo->store('documentos');
 
-        // Crear el documento en la base de datos
         $documento = new Documento([
             'carpeta_id' => $request->carpeta_id,
-            'nombre_documento' => $archivo->getClientOriginalName(), // Obtener el nombre original del archivo
-            'tipo' => $archivo->getClientMimeType(), // Obtener el tipo MIME del archivo
+            'nombre_documento' => $archivo->getClientOriginalName(),
+            'tipo' => $archivo->getClientMimeType(),
             'peso' => $archivo->getSize(),
-            'en_papelera' => false // Documento no está en la papelera al crearse
+            'ruta' => $rutaArchivo, 
+            'en_papelera' => false
         ]);
         $documento->save();
 
-        // Crear registro en Soporte
         $this->createSoporteRecord('Creación de documento', "Se creó un nuevo documento {$documento->nombre_documento} en la carpeta {$documento->carpeta->nombre_carpeta}");
 
-        // Redireccionar de vuelta a la página anterior con un mensaje de éxito
         return back()->with('success', 'Documento cargado correctamente.');
     }
+
 
     public function show(Documento $documento)
     {
@@ -69,6 +65,17 @@ class DocumentoController extends Controller
 
         return redirect()->back();
     }
+
+    public function descargar(Documento $documento)
+    {
+        $filePath = storage_path('app/' . $documento->ruta); // Asegúrate de que 'ruta' es el campo correcto
+        $this->createSoporteRecord('Descarga de documento', "Se descargo un documento {$documento->nombre_documento} en la carpeta {$documento->carpeta->nombre_carpeta}");
+        DB::commit();
+
+        return response()->download($filePath, $documento->nombre_documento);
+    }
+
+
 
     public function destroy(Documento $documento)
     {

@@ -24,6 +24,10 @@
                                 <div class="w-full xl:w-1/4 text-sm mb-1 xl:mb-0"> <!-- Adjust width as per your design -->
                                     <span class="font-semibold">Usuario:</span> {{ $soporte->user->email }}
                                 </div>
+                                <div class="w-full xl:w-1/4 text-sm mb-1 xl:mb-0">
+                                    <span class="font-semibold">Fecha:</span> {{ $soporte->created_at->format('Y-m-d') }}
+                                </div>
+                                
                             </div>
                         @endforeach
                     </div>

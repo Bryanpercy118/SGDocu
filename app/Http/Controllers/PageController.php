@@ -99,7 +99,7 @@ class PageController extends Controller
      */
     public function addProduct()
     {
-        $soportes = Soporte::all();
+        $soportes = Soporte::orderBy('created_at', 'desc')->get();
         return view('pages/add-product',compact('soportes'));
     }
 

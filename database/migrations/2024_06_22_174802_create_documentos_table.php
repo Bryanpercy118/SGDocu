@@ -19,6 +19,7 @@ class CreateDocumentosTable extends Migration
             $table->string('nombre_documento');
             $table->string('tipo');
             $table->string('peso');
+            $table->string('ruta'); 
             $table->string('en_papelera');
             $table->timestamps();
         });

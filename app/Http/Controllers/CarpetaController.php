@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carpeta;
+use App\Models\Documento;
 use App\Models\Soporte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class CarpetaController extends Controller
     public function show(Carpeta $carpeta)
     {
         $carpeta->load('servicio', 'documentos');
-        return response()->json($carpeta);
+        return view('pages.folder', compact('carpeta'));
     }
 
     public function update(Request $request, Carpeta $carpeta)
@@ -75,4 +76,6 @@ class CarpetaController extends Controller
             'description' => $description,
         ]);
     }
+
+    
 }

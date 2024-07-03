@@ -17,7 +17,7 @@
             @foreach($servicio->carpetas as $carpeta)
                 <div class="box p-5 mb-5">
                     <h3 class="text-lg font-medium">
-                        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#view-folder-modal-{{ $carpeta->id }}">{{ $carpeta->nombre_carpeta  }}</a>
+                        <a href="{{ route('carpetas.show', $carpeta->id) }}">{{ $carpeta->nombre_carpeta }}</a>
                     </h3>
                 </div>
 
