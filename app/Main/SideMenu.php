@@ -12,7 +12,8 @@ class SideMenu
      */
     public static function menu()
     {
-        return [
+        $role = auth()->user() ? auth()->user()->getRoleNames()->first() : null;
+        $menuSuperAdmin=[
             'dashboard' => [
                 'icon' => 'home',
                 'title' => 'Area Administrativa',
@@ -55,5 +56,66 @@ class SideMenu
                 'title' => 'Soporte',
             ],
         ];
+
+        $menuAdministrativo=[
+            'dashboard' => [
+                'icon' => 'home',
+                'title' => 'Area Administrativa',
+                'route_name' => 'dashboard-overview-1',
+                'params' => [
+                    'layout' => 'side-menu',
+                ],
+            ],
+            'e-commerce' => [
+                'icon' => 'trash',
+                'route_name' => 'trash',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Papelera de reciclaje',
+            ],
+            'e-commerce2' => [
+                'icon' => 'help-circle',
+                'route_name' => 'add-product',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Soporte',
+            ],
+        ];
+
+        $menuAsistencial=[
+            'dashboard' => [
+                'icon' => 'home',
+                'title' => 'Area Asistencial',
+                'route_name' => 'dashboard-overview-2',
+                'params' => [
+                    'layout' => 'side-menu',
+                ],
+            ],
+            'e-commerce' => [
+                'icon' => 'trash',
+                'route_name' => 'trash',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Papelera de reciclaje',
+            ],
+            'e-commerce2' => [
+                'icon' => 'help-circle',
+                'route_name' => 'add-product',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Soporte',
+            ],
+        ];
+
+        $menu = $role == 'superadmin' ? $menuSuperAdmin :
+        ($role == 'asistencial' ? $menuAsistencial :
+        ($role == 'administrativa' ? $menuAdministrativo : []));
+
+        return $menu;
+
     }
 }
