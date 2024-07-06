@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'name' => 'Gestion Documental',
             'email' => 'gestiondocumental@hrploez.gov.co',
             'email_verified_at' => now(),
-                'password' => bcrypt('Gestiondocumental2024'),
+                'password' => bcrypt('Dsys2024'),
                 'gender' => 'male',
                 'active' => 1,
                 'remember_token' => Str::random(10)
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'name' => 'Administrativa',
             'email' => 'administrativadocumental@hrploez.gov.co',
             'email_verified_at' => now(),
-                'password' => bcrypt('Gestiondocumental2024'),
+                'password' => bcrypt('Sysadmin24'),
                 'gender' => 'male',
                 'active' => 1,
                 'remember_token' => Str::random(10)
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'name' => 'Asistencial',
             'email' => 'asistencialdocumental@hrploez.gov.co',
             'email_verified_at' => now(),
-                'password' => bcrypt('Gestiondocumental2024'),
+                'password' => bcrypt('Asismng24'),
                 'gender' => 'male',
                 'active' => 1,
                 'remember_token' => Str::random(10)

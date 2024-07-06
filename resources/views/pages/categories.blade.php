@@ -31,13 +31,13 @@
                                 <a class="flex items-center mr-3 edit-category-link" data-tw-toggle="modal" data-tw-target="#edit-confirmation-modal" onclick="openEditModal('{{ $servicio->id }}', '{{ $servicio->nombre_del_servicio }}', '{{ $servicio->area_id }}')" style="cursor: pointer;">
                                     <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Editar
                                 </a>
-                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" onclick="event.preventDefault(); document.getElementById('delete-servicio-{{ $servicio->id }}-form').submit();">
+                                {{-- <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" onclick="event.preventDefault(); document.getElementById('delete-servicio-{{ $servicio->id }}-form').submit();">
                                     <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Eliminar
                                 </a>
                                 <form id="delete-servicio-{{ $servicio->id }}-form" action="{{ route('servicios.destroy', ['servicio' => $servicio->id]) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
-                                </form>
+                                </form> --}}
                             </div>
                         </td>
                     </tr>
