@@ -57,6 +57,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10)
         ]);
         
+        
         $roleSuperadmin = Role::create(['name' => 'superadmin']);
         $roleAdministrativa = Role::create(['name' => 'administrativa']);
         $roleAsistencial = Role::create(['name' => 'asistencial']);
