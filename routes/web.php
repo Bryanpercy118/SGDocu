@@ -18,6 +18,11 @@ Route::controller(AuthController::class)->middleware('loggedin')->group(function
     Route::get('login', 'loginView')->name('login.index');
     Route::post('login', 'login')->name('login.check');
 });
+Route::get('/recordar-contraseña', function () {
+    return view('pages.recordar-contraseña');
+})->name('password.remember');
+
+Route::post('/actualizar-contraseña', [SoporteController::class, 'actualizarContraseña'])->name('password.update');
 
 Route::middleware('auth')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -125,4 +130,6 @@ Route::middleware('auth')->group(function() {
     Route::resource('soporte', SoporteController::class);
     Route::resource('papeleras', PapeleraController::class)->only(['index', 'destroy']);
     Route::post('papeleras/restore/{id}', [PapeleraController::class, 'restore'])->name('papeleras.restore');
+   
+    
 });

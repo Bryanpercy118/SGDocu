@@ -42,6 +42,9 @@
                             <input id="toggle-password" type="checkbox" class="form-check-input border mr-2">
                             <label class="cursor-pointer select-none" for="toggle-password">Ver Contraseña</label>
                         </div>
+                        <div class="flex items-center mt-4">
+                            <a href="{{ route('password.remember') }}" class="text-blue-500 cursor-pointer select-none">Recordar Contraseña</a>
+                        </div>
                     </div>
                     
                     <div class="intro-x flex text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">

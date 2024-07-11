@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Soporte;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User; // Asegúrate de que tienes el modelo User importado
+use Illuminate\Support\Facades\Hash;
 class SoporteController extends Controller
 {
     public function index()
@@ -39,5 +41,23 @@ class SoporteController extends Controller
         // Aquí puedes realizar cualquier acción adicional, como notificar o loggear
 
         return redirect()->back()->with('success', 'Soporte creado correctamente.');
+    }
+    public function actualizarContraseña(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'new-password' => 'required|string|min:8|confirmed'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            $user->password = Hash::make($request->input('new-password'));
+            $user->save();
+
+            return redirect()->route('login')->with('status', 'Contraseña actualizada con éxito.');
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Email no encontrado.']);
     }
 }
