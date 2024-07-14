@@ -15,12 +15,65 @@
         <!-- Lista de carpetas -->
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible mt-5">
             @foreach($servicio->carpetas as $carpeta)
-                <div class="box p-5 mb-5">
-                    <h3 class="text-lg font-medium">
+            <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                <table class="table table-report -mt-2">
+                    <thead>
+                        <tr>
+                            <th class="whitespace-nowrap">Carpetas</th>
+                            <th class="text-center whitespace-nowrap">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="intro-x">
+                            <td class="text-lg font-medium flex justify-between items-center">
+                                <a href="{{ route('carpetas.show', $carpeta->id) }}">{{ $carpeta->nombre_carpeta }}</a>
+                            </td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <button class="btn btn-sm btn-warning" data-tw-toggle="modal" data-tw-target="#edit-folder-modal-{{ $carpeta->id }}">Editar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                {{-- <div class="box p-5 mb-5">
+                    <h3 class="text-lg font-medium flex justify-between items-center">
                         <a href="{{ route('carpetas.show', $carpeta->id) }}">{{ $carpeta->nombre_carpeta }}</a>
+                        <button class="btn btn-sm btn-warning" data-tw-toggle="modal" data-tw-target="#edit-folder-modal-{{ $carpeta->id }}">Editar</button>
                     </h3>
+                </div> --}}
+
+               <!-- Modal para editar carpeta -->
+                <div id="edit-folder-modal-{{ $carpeta->id }}" class="modal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body p-0">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Editar Carpeta: {{ $carpeta->nombre_carpeta }}</h5>
+                                    <button type="button" class="btn-close" data-tw-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="edit-carpeta-form-{{ $carpeta->id }}" action="{{ route('carpetas.update', $carpeta->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <div class="mb-3">
+                                            <label for="edit_nombre_carpeta_{{ $carpeta->id }}" class="form-label">Nombre de la Carpeta</label>
+                                            <input type="text" class="form-control" id="edit_nombre_carpeta_{{ $carpeta->id }}" name="nombre_carpeta" value="{{ $carpeta->nombre_carpeta }}" required>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                        <button type="button" class="btn btn-outline-secondary w-24 mr-1" data-tw-dismiss="modal">Cancelar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
+
+                <!-- Modal para ver y cargar documentos -->
                 <div id="view-folder-modal-{{ $carpeta->id }}" class="modal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -113,4 +166,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function openEditModal(carpetaId, carpetaNombre) {
+            // Actualizar el formulario con la información de la carpeta
+            $('#edit-carpeta-form-' + carpetaId).attr('action', '{{ route("carpetas.update", ["carpeta" => ":carpeta"]) }}'.replace(':carpeta', carpetaId));
+            $('#edit_nombre_carpeta_' + carpetaId).val(carpetaNombre);
+
+            // Mostrar el modal
+            $('#edit-folder-modal-' + carpetaId).modal('show');
+        }
+    </script>
 @endsection

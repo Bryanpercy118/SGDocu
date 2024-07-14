@@ -40,7 +40,6 @@ class CarpetaController extends Controller
     public function update(Request $request, Carpeta $carpeta)
     {
         $request->validate([
-            'servicio_id' => 'required|exists:servicios,id',
             'nombre_carpeta' => 'required|string|max:255',
         ]);
 
@@ -49,9 +48,10 @@ class CarpetaController extends Controller
         // Crear registro en Soporte
         $this->createSoporteRecord('Actualización de carpeta', "Se actualizó la carpeta {$carpeta->nombre_carpeta}");
 
-        return response()->json($carpeta);
+        return redirect()->route('servicios.show', $carpeta->servicio_id)->with('success', 'Carpeta actualizada correctamente.');
     }
 
+    
     public function destroy(Carpeta $carpeta)
     {
         // Obtener el ID del servicio antes de eliminar la carpeta

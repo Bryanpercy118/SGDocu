@@ -126,6 +126,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('documentos', DocumentoController::class);
     Route::get('documentos/{documento}/descargar', [DocumentoController::class, 'descargar'])->name('documentos.descargar');
     Route::resource('carpetas', CarpetaController::class);
+    
     Route::resource('areas', AreaController::class);
     Route::resource('soporte', SoporteController::class);
     Route::resource('papeleras', PapeleraController::class)->only(['index', 'destroy']);
