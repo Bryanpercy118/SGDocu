@@ -7,6 +7,8 @@ use App\Models\Area;
 use App\Models\Papelera;
 use App\Models\Servicio;
 use App\Models\Soporte;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class PageController extends Controller
 {
@@ -265,7 +267,9 @@ class PageController extends Controller
      */
     public function usersLayout1()
     {
-        return view('pages/users-layout-1');
+        $users = User::with('roles')->get();
+        $roles = Role::all();
+        return view('pages/users-layout-1', compact('users','roles'));
     }
 
     /**

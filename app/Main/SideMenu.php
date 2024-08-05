@@ -47,6 +47,15 @@ class SideMenu
                 ],
                 'title' => 'Papelera de reciclaje',
             ],
+            
+            'e-commerce3' => [
+                'icon' => 'user',
+                'route_name' => 'users-layout-1',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Gestion Usuarios',
+            ],
             'e-commerce2' => [
                 'icon' => 'help-circle',
                 'route_name' => 'add-product',

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     ServicioController,ColorSchemeController, 
     DocumentoController,PageController,AuthController, CarpetaController,DarkModeController, 
-    AreaController, PapeleraController, SoporteController};
+    AreaController, PapeleraController, SoporteController,UserController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,6 +120,29 @@ Route::middleware('auth')->group(function() {
 
     // Ruta para actualizar un servicio existente
     Route::put('/servicios/{servicio}', [ServicioController::class, 'update'])->name('servicios.update');
+
+
+    // Ruta para mostrar la lista de usuarios
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    // Ruta para mostrar el formulario de creación
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+
+    // Ruta para almacenar un nuevo usuario
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+    // Ruta para mostrar el formulario de edición
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+
+    // Ruta para mostrar un usuario específico
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+
+    // Ruta para actualizar un usuario existente
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+    // Ruta para eliminar un usuario
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+        
 
     // Ruta para eliminar un servicio
     Route::delete('/servicios/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');
