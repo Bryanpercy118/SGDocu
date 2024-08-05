@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
+    
     public function run()
     {
         // // Credenciales de Prueba
@@ -37,6 +38,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10)
         ]);
         
+
         $userAdministrativa = User::create([
             'name' => 'Administrativa',
             'email' => 'administrativadocumental@hrploez.gov.co',
