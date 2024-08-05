@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash; // Asegúrate de importar Hash correctamente
 class UserController extends Controller
 {
     /**
@@ -14,6 +15,22 @@ class UserController extends Controller
     {
      
     }
+    public function resetPassword(User $user)
+{
+    // Generar una nueva contraseña aleatoria
+    $newPassword = Str::random(10);
+    
+    // Actualizar el registro del usuario con la nueva contraseña hasheada
+    $user->update([
+        'password' => Hash::make($newPassword),
+        'plain_password' => $newPassword
+    ]);
+
+    // Puedes enviar la nueva contraseña por correo electrónico, o simplemente mostrarla en la interfaz
+    // Mail::to($user->email)->send(new PasswordResetMail($newPassword));
+
+    return redirect()->back()->with('success', 'La contraseña ha sido restablecida. La nueva contraseña es: ' . $newPassword);
+}
 
     /**
      * Show the form for creating a new resource.

@@ -142,7 +142,8 @@ Route::middleware('auth')->group(function() {
 
     // Ruta para eliminar un usuario
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-        
+ 
+    Route::get('/users/reset-password/{user}', [UserController::class, 'resetPassword'])->name('users.resetPassword');       
 
     // Ruta para eliminar un servicio
     Route::delete('/servicios/{servicio}', [ServicioController::class, 'destroy'])->name('servicios.destroy');

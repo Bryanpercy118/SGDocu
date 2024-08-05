@@ -1,11 +1,11 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Gestión de Usuarios</title>
+    <title>Gestion de Usuarios</title>
 @endsection
 
 @section('subcontent')
-    <h2 class="intro-y text-lg font-medium mt-10">Gestión de Usuarios</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Gestion de Usuarios</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
             <button class="btn btn-primary shadow-md mr-2" data-tw-toggle="modal" data-tw-target="#add-user-modal">Nuevo Usuario</button>
@@ -22,6 +22,7 @@
                             <a href="" class="font-medium">{{ $user->name }}</a>
                             <div class="text-slate-500 text-xs mt-0.5">Email: {{ $user->email }}</div>
                             <div class="text-slate-500 text-xs mt-0.5">Rol: {{ $user->roles->pluck('name')->implode(', ') }}</div>
+                            <div class="text-slate-500 text-xs mt-0.5">Contraseña: {{ $user->plain_password ?? $user->password }}</div>
                         </div>
                         <div class="flex -ml-2 lg:ml-0 lg:justify-end mt-3 lg:mt-0">
                             <a href="javascript:;" class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in tooltip" title="Editar" data-tw-toggle="modal" data-tw-target="#edit-user-modal" onclick="openEditModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->roles->pluck('name')->implode(', ') }}')">
@@ -29,6 +30,9 @@
                             </a>
                             <a href="javascript:;" class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in tooltip" title="Eliminar" onclick="deleteUser('{{ $user->id }}')">
                                 <i class="w-3 h-3 fill-current" data-lucide="trash"></i>
+                            </a>
+                            <a href="{{ route('users.resetPassword', $user->id) }}" class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in tooltip" title="Restablecer Contraseña">
+                                <i class="w-3 h-3 fill-current" data-lucide="refresh-cw"></i>
                             </a>
                             <form id="delete-user-{{ $user->id }}-form" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: none;">
                                 @csrf
