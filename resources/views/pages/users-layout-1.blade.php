@@ -22,7 +22,9 @@
                             <a href="" class="font-medium">{{ $user->name }}</a>
                             <div class="text-slate-500 text-xs mt-0.5">Email: {{ $user->email }}</div>
                             <div class="text-slate-500 text-xs mt-0.5">Rol: {{ $user->roles->pluck('name')->implode(', ') }}</div>
-                            <div class="text-slate-500 text-xs mt-0.5">Contraseña: {{ $user->plain_password ?? $user->password }}</div>
+                       
+                            <!-- <div class="text-slate-500 text-xs mt-0.5">Contraseña: {{ $user->plain_password ?? $user->password }}</div>
+                        -->
                         </div>
                         <div class="flex -ml-2 lg:ml-0 lg:justify-end mt-3 lg:mt-0">
                             <a href="javascript:;" class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in tooltip" title="Editar" data-tw-toggle="modal" data-tw-target="#edit-user-modal" onclick="openEditModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->roles->pluck('name')->implode(', ') }}')">
@@ -88,56 +90,63 @@
 
     <!-- BEGIN: Edit User Modal -->
     <div id="edit-user-modal" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Editar Usuario</h5>
-                    <button type="button" class="btn-close" data-tw-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="edit-user-form" method="POST" action="">
-                        @csrf
-                        @method('PUT')
-                        <div class="mb-3">
-                            <label for="edit-name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="edit-name" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="edit-email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-role" class="form-label">Rol</label>
-                            <select class="form-select" id="edit-role" name="role" required>
-                                @foreach($roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                        <button type="button" class="btn btn-outline-secondary w-24 mr-1" data-tw-dismiss="modal">Cancelar</button>
-                    </form>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-tw-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-user-form" method="POST" action="">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label for="edit-name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="edit-name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="edit-email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-role" class="form-label">Rol</label>
+                        <select class="form-select" id="edit-role" name="role" required>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-password" class="form-label">Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="edit-password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <button type="button" class="btn btn-outline-secondary w-24 mr-1" data-tw-dismiss="modal">Cancelar</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
     <!-- END: Edit User Modal -->
 @endsection
 
 @section('script')
-    <script>
-        function openEditModal(userId, userName, userEmail, userRole) {
-            $('#edit-user-form').attr('action', '{{ route("users.update", ":user") }}'.replace(':user', userId));
-            $('#edit-name').val(userName);
-            $('#edit-email').val(userEmail);
-            $('#edit-role').val(userRole);
-            $('#edit-user-modal').modal('show');
-        }
+<script>
+    function openEditModal(userId, userName, userEmail, userRole) {
+        $('#edit-user-form').attr('action', '{{ route("users.update", ":user") }}'.replace(':user', userId));
+        $('#edit-name').val(userName);
+        $('#edit-email').val(userEmail);
+        $('#edit-role').val(userRole);
+        $('#edit-password').val('');
+        $('#edit-user-modal').modal('show');
+    }
 
-        function deleteUser(userId) {
-            if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-                document.getElementById('delete-user-' + userId + '-form').submit();
-            }
+    function deleteUser(userId) {
+        if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+            document.getElementById('delete-user-' + userId + '-form').submit();
         }
-    </script>
+    }
+</script>
+
 @endsection

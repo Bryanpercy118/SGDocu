@@ -18,7 +18,7 @@ Route::controller(AuthController::class)->middleware('loggedin')->group(function
     Route::get('login', 'loginView')->name('login.index');
     Route::post('login', 'login')->name('login.check');
 });
-Route::get('/recordar-contraseña', function () {
+Route::get('/recordar-contraseña/superusuario', function () {
     return view('pages.recordar-contraseña');
 })->name('password.remember');
 
