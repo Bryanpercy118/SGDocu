@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash; // Asegúrate de importar Hash correctamente
+
 class UserController extends Controller
 {
     /**
@@ -47,25 +48,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // Validar y crear un nuevo usuario
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|exists:roles,name',
-        ]);
-
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-        ]);
-
-        // Asignar el rol al usuario
-        $user->assignRole($validated['role']);
-
-        return redirect()->back()->with('success', 'Usuario creado exitosamente.');
+        try {
+            // Validar y crear un nuevo usuario
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:8',
+                'role' => 'required|string|exists:roles,name',
+            ]);
+    
+            // Proporcionar valores predeterminados para campos adicionales
+            $user = User::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'password' => bcrypt($validated['password']),
+                'plain_password' => $validated['password'], // Guardar la contraseña en texto plano
+                'gender' => 'male',
+                'active' => 1,
+                'remember_token' => Str::random(10)
+            ]);
+    
+            // Asignar el rol al usuario
+            $user->assignRole($validated['role']);
+    
+            return redirect()->back()->with('success', 'Usuario creado exitosamente.');
+        } catch (\Exception $e) {
+            // Usar dd() para depurar el error
+            dd($e->getMessage());
+        }
     }
+    
+    
 
     /**
      * Display the specified resource.
